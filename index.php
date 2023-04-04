@@ -62,15 +62,50 @@
   
   
 
-<!-- information section start -->
 <section class="information pt-5">
   <div class="container">
     <div class="row">
+      <div class="col-md-12 col-lg-3 col-sm-12">
+       
       
-      
-      <h1 class="text-center">Here is my assignment 9</h1>
+        
+      </div>
+        <?php
+
+                        $sql = "SELECT * FROM blog";
+                        $allPosts = mysqli_query($db, $sql);
+                       
+                        while ($row = mysqli_fetch_assoc($allPosts)) {
+                        
+                        
+                        $post_id          =  $row['post_id'];
+                        $title            =  $row['title'];
+                        $paragraph      =  $row['paragraph'];
+                        $image            =  $row['image'];
+                        
+                        
+                        
+
+                             
+
+                        ?>
+      <div class="col-md-4 col-lg-3 col-sm-12">
+        <div class="card" >
+  <img class="card-img-top" src="assets/image/<?php echo $image; ?>">
+  <div class="card-body">
+    <h5 class="card-text"><?php echo $title; ?></h5>
+    <p><?php echo substr($paragraph, 0, 100) ; ?></p>
+    <a href="singleblog.php?view=<?php echo $row['post_id']."=". trim(str_replace(" ", "_", strtolower($row['title']))); ?>" class="button">Click Here</a>
+  </div>
+</div>
+        
+      </div>
+       
+      <?php }
+  ?>
       
     </div>
+
     
   </div>
   
